@@ -1,0 +1,35 @@
+1. 
+Vide código
+
+2. 
+Vide código
+
+3. 
+O RSS diminui. Essa diminuição se dá pelo ajuste dos coeficientes da reta de regressão linear, que a cade iteração representa da melhor forma os pontos utilizados na fase de treinamento. Esse ajuste é dado pelo decréscimo da multiplicação dos gradientes de cada coeficiente pela taxa de aprendizagem. Contudo, existe um trade-off na escolha dessa taxa. Caso seja muito pequena, necessitará de mais iterações para convergir. Caso seja muito grande, não irá convergir.
+
+Resultado Obtido
+
+Iteração [1000] (Learning Rate = 0.001)
+RSS: 91.8343476371739
+W0 = -3.403476317589064
+W1 = 3.4539297809959373
+Gradiente (norma) = 3.434256435565766 
+
+4. 
+Learning Rate = 0.003  
+Número de Iterações = 16000
+
+5. 
+Vide código
+
+6. 
+Tolerância = 0.04
+
+7.
+Para uma comparação justa, foram removidos todos os prints das versões "loop" e "vectorized", por não existem prints na versão da equação normal
+
+Tempo de processamento versão Equação Laço =~ 4.5 segundos
+Tempo de processamento versão Equação Vetorizada =~ 3.5 segundos
+Tempo de processamento versão Equação Normal =~ 0.01 segundos
+
+Acredito que a versão com equações normais possui eficiência inversamente proporcional a complexidade de matriz de entrada, apresentando ótimo desempenho no cenário atual, porém não sendo tão eficiente com matrizes de maior complexidade.
