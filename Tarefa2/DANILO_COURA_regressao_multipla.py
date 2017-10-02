@@ -56,7 +56,7 @@ X = points[:,0:5];
 Y = points[:,6][:,np.newaxis];
 init_w = np.zeros((5,1));
 learning_rate = 0.00004;
-epsilon = 0.001
+epsilon = 0.0001
 w_do_zero = gradient_descent_runner_vectorized(init_w, X,Y, learning_rate, epsilon)
 print("Os coeficientes obtidos na Regressão Múltipla do Zero são: \n {0}".format(w_do_zero))
 clf = LinearRegression()
