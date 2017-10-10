@@ -120,6 +120,7 @@ def graph_res_pred(model,X,Y,name):
 	preds = pd.DataFrame({"preds":model_ridge.predict(X), "true":Y})
 	preds["residuals"] = preds["true"] - preds["preds"]
 	preds.plot(x = "preds", y = "residuals",kind = "scatter")
+	plt.title(name)
 	plt.show()    
 
 [X,Y] = read_data("treino.csv")
@@ -155,11 +156,11 @@ model_forest = RandomForestRegressor()
 min_samples_split  = [2, 5, 10, 15, 20, 25]
 calc_rmse(model_tree,"min_samples_split",min_samples_split,"Random Forest Regression")
 
-[X_t,Y_t] = organize_test_data("graduados_teste.csv")
+#[X_t,Y_t] = organize_test_data("graduados_teste.csv")
+[X_t,Y_t] = read_data("teste.csv")
 X_t = add_mean(X_t)
 X_t[inclinacao] = np.log1p(X_t[inclinacao])
-#X_t = add_poly_feat(X_t, 1)
 model_ridge.fit(X,Y)
-graph_res_pred(model_ridge,X,Y,"Ridge Regression")
 pred = model_ridge.predict(X_t)
 print(np.sqrt(mean_squared_error(Y_t, pred)))
+graph_res_pred(model_ridge,X,Y,"Ridge Regression")
