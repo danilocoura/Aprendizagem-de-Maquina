@@ -1,0 +1,15 @@
+Apesar da sua simplicidade, a função ReLu não se trata de uma função linear, assim como sua combinação em várias camadas também não terá esse comportamento. Na verdade, aí está o segredo, combinações das funções de ativação ReLu podem se aproximar de qualquer função.
+
+Essa simplicidade faz com que apresente melhor desempenho comparada as funções de ativação Sigmoid e Tanh, pois o cálculo da sua derivada é muito mais simples que as demais (resultando apenas 0 ou 1), além de também eliminar o efeito "vanishing" (esvaecimento) dos gradientes, efeito esse que acontece quando os valores são muito pequenos ou grandes nas funções Sigmoid e Tanh, pois a derivada desses valores retornam valores muito pequenos.
+
+Outro ponto positivo da função de ativação ReLU é a criação de uma rede neural esparsa, pois nem todos os neurônios são ativados. Quando o somatório dos pesos multiplicados pelo retorno da camada de ativação anterior (ou entrada, no caso da primeira camada) é negativo, a função retornará zero e, consequentemente, seu gradiente também será. Dessa forma a rede se tornará menos densa, resultando em uma rede menos custosa e mais rápida.
+
+Contudo, o excesso de não ativações dos neurônios pode prejudicar a rede, conhecido como "Dying ReLu Problem". Visando mitigar esse problema são utilizadas variações da função de ativação ReLu (e.g. LeakyReLu, ELU), que não retornam zero para os valores negativos, mas valores negativos próximos a zero.
+
+https://www.coursera.org/learn/neural-networks-deep-learning/lecture/4dDC1/activation-functions
+
+https://matheusfacure.github.io/2017/07/12/activ-func/
+
+https://stats.stackexchange.com/questions/297947/why-would-relu-work-as-an-activation-function-at-all
+
+https://medium.com/the-theory-of-everything/understanding-activation-functions-in-neural-networks-9491262884e0

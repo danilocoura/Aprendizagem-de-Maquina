@@ -64,6 +64,9 @@ def organize_data(file):
 	Y = Y.astype('long')
 	return [X, Y]
 
+print("sigmoid")
+print((1- sigmoid(1)) * sigmoid(1))
+
 [X, Y] = organize_data("iris\iris.data")
 init_w = np.zeros((X.shape[1],1));
 learning_rate = 0.25;
