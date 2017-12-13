@@ -1,0 +1,5 @@
+Realmente é muito interessante realizar toda a construção prévia do modelo baseado no uso do lazy evaluation, por meio do uso dos placeholders para os dados de entrada e de funções pré-definidas na biblioteca que inserem camadas escondidas e suas funções de ativação (caso seja necessário), assim como realizam o cálculo do erro e o tipo de algoritmo para minimizá-lo. E além do mais, não é necessário preocupar-se com o cálculo do back propagation, que já é realizado baseado na arquitetura montada do forward propagation.
+
+Claro, se levará um tempo para familiarizar-se perfeitamente com as funções e a metodologia do seu uso, contudo creio que seja uma ferramenta fantástica que dá flexibilidade para criação de arquiteturas distintas das fornecidas pelo sklearn (senti essa necessidade).
+
+Sobre o experimento, tenho a impressão que se fossem levadas em consideração as três cores (RGB) e não apenas a intensidade (tons de cinza) seria obtido um resultado melhor, visto que as cores das placas podem ser um diferencial entre algumas delas.
