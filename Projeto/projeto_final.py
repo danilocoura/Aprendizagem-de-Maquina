@@ -4,6 +4,8 @@ import math
 import pandas as pd
 import numpy as np
 from sklearn.neural_network import MLPClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import  validation_curve
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -146,8 +148,8 @@ def plot_acc(train,validation,param, range, name):
 	plt.xlabel(param)
 	plt.ylabel('ACCURACY')
 	plt.title(name)
-	line1, = plt.plot(range, validation, label="Validation")
-	line2, = plt.plot(range, train, label="Train")
+	line1, = plt.plot(range, train, label="Train")
+	line2, = plt.plot(range, validation, label="Validation")
 	first_legend = plt.legend(handles=[line1], loc=1)
 	ax = plt.gca().add_artist(first_legend)
 	plt.legend(handles=[line2], loc=4)
@@ -221,12 +223,33 @@ Y_test = Y_matrix[11466:]
 #		camadas = []	
 
 #clf = MLPClassifier(max_iter=1000, shuffle=False, hidden_layer_sizes=camadas)
-#alpha = [30, 50, 70, 90, 100, 110, 130, 150, 170]
+#alpha = [40, 60, 80, 100, 120, 140, 160]
 
 #clf = MLPClassifier(alpha=60, max_iter=1000, hidden_layer_sizes=camadas,  shuffle=False)
 #clf.fit(X_train,Y_train)
 #joblib.dump(clf, 'MLP_L5_HU300_A60.pkl') 
 clf = joblib.load('MLP_L5_HU300_A60.pkl')
 print(clf.score(X_test, Y_test))
+
+#clf = DecisionTreeClassifier()
+#min_samples_split = [2, 4, 8, 16, 32, 64, 128, 256]
+#calc_acc(clf,"min_samples_split",min_samples_split,"Decision Tree",X_train,Y_train)
+
+#clf = DecisionTreeClassifier(min_samples_split=32)
+#clf.fit(X_train,Y_train)
+#joblib.dump(clf, 'DECTREE_MIN32.pkl') 
+clf = joblib.load('DECTREE_MIN32.pkl')
+print(clf.score(X_test, Y_test))
+
+#clf = RandomForestClassifier()
+#min_samples_split = [2, 4, 8, 16, 32, 64, 128, 256]
+#calc_acc(clf,"min_samples_split",min_samples_split,"Decision Tree",X_train,Y_train)
+
+#clf = RandomForestClassifier(min_samples_split=16)
+#clf.fit(X_train,Y_train)
+#joblib.dump(clf, 'RANDFOREST_MIN16.pkl') 
+clf = joblib.load('RANDFOREST_MIN16.pkl')
+print(clf.score(X_test, Y_test))
+
 predict_image("5150614150_67ca18893c.jpg",clf)
 predict_image("07(7).jpg",clf)
