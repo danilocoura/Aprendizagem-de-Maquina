@@ -12,6 +12,7 @@ import matplotlib.patches as patches
 import matplotlib.image as mpimg
 from sklearn.externals import joblib
 from scipy import ndimage
+from sklearn.metrics import confusion_matrix
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
@@ -162,6 +163,17 @@ def calc_acc(model,param,range,name, X_train, Y_train):
     print_acc(train,validation,param, range, name)
     plot_acc(train,validation,param, range, name)
 
+def get_metrics(X_test, Y_test):
+	matrix = confusion_matrix(clf.predict(X_test),Y_test,[0,1])
+	TN = matrix[0,0]
+	FN = matrix[1,0]
+	FP = matrix[0,1]
+	TP = matrix[1,1]
+	precision = TP / (TP + FP)
+	recall = TP / (TP + FN)
+	f_score = 2* (precision*recall)/(precision+recall)
+	return precision, recall, f_score, matrix
+
 def predict_image(file, clf):
 	imageBGR = cv2.imread(file)
 	imageRGB = cv2.cvtColor(imageBGR, cv2.COLOR_BGR2RGB)
@@ -250,6 +262,12 @@ print(clf.score(X_test, Y_test))
 #joblib.dump(clf, 'RANDFOREST_MIN16.pkl') 
 clf = joblib.load('RANDFOREST_MIN16.pkl')
 print(clf.score(X_test, Y_test))
+
+precision, recall, f_score, matrix = get_metrics(X_test, Y_test)
+print('Matriz de Confusão: \n {}'.format(matrix))
+print('Precision: {}'.format(precision))
+print('Recall: {}'.format(recall))
+print('F-Score: {}'.format(f_score))
 
 predict_image("5150614150_67ca18893c.jpg",clf)
 predict_image("07(7).jpg",clf)
